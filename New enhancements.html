@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frequently Asked Questions</title>
+    <style>
+        body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    text-align: center;
+    background-color: #333;
+    color: #fff;
+    padding: 20px 0;
+}
+
+.faq-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.faq {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    margin: 20px 0;
+    border-radius: 5px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.faq:hover {
+    background-color: #f9f9f9;
+}
+
+.faq h2 {
+    font-size: 24px;
+    margin: 0;
+    color: #333;
+    padding: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.answer {
+    display: none;
+    padding: 15px;
+    border-top: 1px solid #ddd;
+}
+</style>
+</head>
+<body>
+    <header>
+        <h1>Frequently Asked Questions</h1>
+    </header>
+
+    <section class="faq-container">
+        <article class="faq">
+            <h2>How does GoDaddy help small business owners succeed?</h2>
+            <div class="toggle-button">+</div>
+            <div class="answer">
+                GoDaddy helps small business owners succeed by providing domain registration, website hosting, website building tools, and marketing services.
+            </div>
+        </article>
+
+        <article class="faq">
+            <h2>Why do I need a website for my business?</h2>
+            <div class="toggle-button">+</div>
+            <div class="answer">
+                A website can help your business reach a wider audience, establish credibility, showcase your products or services, and provide valuable information to customers.
+            </div>
+        </article>
+
+        <!-- Add more questions as needed -->
+    </section>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+    const faqs = document.querySelectorAll(".faq");
+
+    faqs.forEach(function (faq) {
+        const toggleButton = faq.querySelector(".faq h2");
+        toggleButton.addEventListener("click", function () {
+            faq.classList.toggle("open");
+            const answer = faq.querySelector(".answer");
+            if (faq.classList.contains("open")) {
+                answer.style.display = "block";
+            } else {
+                answer.style.display = "none";
+            }
+        });
+    });
+});
+
+    </script>
+</body>
+</html>
