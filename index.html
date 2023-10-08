@@ -13,16 +13,33 @@
             background-color: #f9f9f9;
         }
         .answer {
-            display: none;
+            height: 0;
+            padding-inline: 10px;
+            transition: 200ms;
+            overflow: hidden;
+        }
+        .shown
+        {
             padding: 10px;
             border-top: 1px solid #ddd;
+            display: block;
+            height: fit-content;
         }
         .toggle-button {
             position: absolute;
             top: 5px;
-            right: 5px;
+            right: 10px;
             cursor: pointer;
+            font-size: 30px;
+            transition: 200ms;
+            line-height: 60px;
         }
+
+        .animated
+        {
+            transform: rotate(90deg);
+        }
+
     </style>
 </head>
 <body>
@@ -31,7 +48,7 @@
 
 <div class="faq">
     <h4>How does GoDaddy help small business owners succeed?</h4>
-    <div class="toggle-button">+</div>
+    <div class="toggle-button">⏵</div>
     <div class="answer">
         Answer goes here...
     </div>
@@ -39,7 +56,7 @@
 
 <div class="faq">
     <h4>Why do I need a website for my business?</h4>
-    <div class="toggle-button">+</div>
+    <div class="toggle-button">⏵</div>
     <div class="answer">
         Answer goes here...
     </div>
@@ -48,32 +65,26 @@
 <!-- Add more questions as needed -->
 
 <script>
+
+    function changeToggleButton(toggleButton)
+    {
+        if(toggleButton.classList.contains('animated'))
+        {
+            toggleButton.classList.remove('animated')
+        }
+        else
+        {
+            toggleButton.classList.add("animated");
+        }
+    }
+
 var faqs = document.getElementsByClassName("faq");
 for (var i = 0; i < faqs.length; i++) {
-    var toggleButton = faqs[i].querySelector(".toggle-button");
-    toggleButton.addEventListener("click", function(event) {
-        event.stopPropagation(); // Prevent the click event from bubbling up to the parent .faq element
-        var answer = this.nextElementSibling;
-        if (answer.style.display === "block" || answer.style.display === "") {
-            answer.style.display = "none";
-            this.textContent = "+"; // Change the button text to '+'
-        } else {
-            answer.style.display = "block";
-            this.textContent = "−"; // Change the button text to '−'
-        }
-    });
-    
     faqs[i].addEventListener("click", function() {
-        // Toggle the answer when the .faq element is clicked
         var answer = this.querySelector(".answer");
         var toggleButton = this.querySelector(".toggle-button");
-        if (answer.style.display === "block" || answer.style.display === "") {
-            answer.style.display = "none";
-            toggleButton.textContent = "+";
-        } else {
-            answer.style.display = "block";
-            toggleButton.textContent = "−";
-        }
+        changeToggleButton(toggleButton);
+        answer.classList.toggle("shown");
     });
 }
 </script>
