@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }
+        h2 {
+            text-align: center;
+            font-size: 24px;
+            margin-top: 20px;
+            color: #333;
+        }
+        .faq {
+            cursor: pointer;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            margin: 10px 0;
+            padding: 15px;
+            border-radius: 5px;
+            box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+            position: relative;
+            transition: transform 0.3s ease-in-out; /* Add a transform transition */
+        }
+        .faq:hover {
+            background-color: #f9f9f9;
+            transform: scale(1.0); /* Scale the FAQ on hover */
+        }
+        .faq h4 {
+            font-size: 18px;
+            margin: 0;
+            color: #333;
+            transition: transform 0.3s ease-in-out; /* Add a transform transition for the text */
+        }
+        .faq:hover h4 {
+            transform: scale(1.05); /* Scale the text on hover */
+        }
+        .answer {
+            display: none;
+            padding: 15px 0;
+            border-top: 1px solid #ddd;
+        }
+        .toggle-button {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            transition: transform 0.3s ease-in-out;
+            transform: rotate(0deg);
+        }
+        .faq.open .answer {
+            display: block;
+        }
+        .faq.open .toggle-button {
+            transform: rotate(45deg);
+        }
+    </style>
+</head>
+<body>
+
+<h2>Frequently Asked Questions</h2>
+
+<div class="faq">
+    <h4>How does GoDaddy help small business owners succeed?</h4>
+    <div class="toggle-button">+</div>
+    <div class="answer">
+        GoDaddy helps small business owners succeed by providing domain registration, website hosting, website building tools, and marketing services.
+    </div>
+</div>
+
+<div class="faq">
+    <h4>Why do I need a website for my business?</h4>
+    <div class="toggle-button">+</div>
+    <div class="answer">
+        A website can help your business reach a wider audience, establish credibility, showcase your products or services, and provide valuable information to customers.
+    </div>
+</div>
+
+<!-- Add more questions as needed -->
+
+<script>
+var faqs = document.querySelectorAll(".faq");
+
+faqs.forEach(function(faq) {
+    var toggleButton = faq.querySelector(".toggle-button");
+    toggleButton.addEventListener("click", function(event) {
+        event.stopPropagation();
+        var answer = faq.querySelector(".answer");
+        faq.classList.toggle("open");
+        if (faq.classList.contains("open")) {
+            answer.style.display = "block";
+            toggleButton.textContent = "−";
+        } else {
+            answer.style.display = "none";
+            toggleButton.textContent = "+";
+        }
+    });
+    
+    faq.addEventListener("click", function() {
+        var answer = this.querySelector(".answer");
+        var toggleButton = this.querySelector(".toggle-button");
+        this.classList.toggle("open");
+        if (this.classList.contains("open")) {
+            answer.style.display = "block";
+            toggleButton.textContent = "−";
+        } else {
+            answer.style.display = "none";
+            toggleButton.textContent = "+";
+        }
+    });
+});
+</script>
+
+</body>
+</html>
