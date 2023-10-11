@@ -8,6 +8,10 @@ var body = document.querySelector('body');
 var rightbutton = document.querySelector('.button2')
 var leftbutton = document.querySelector('.button1')
 
+
+
+
+
 var details = [
     {
         cardcontr: card1cont,
@@ -42,41 +46,49 @@ var details = [
     }
 ]
 function rotator(event) {
+    event.preventDefault();
     let cardrect = event.target.getBoundingClientRect();
     let centerX = cardrect.left + cardrect.width / 2;
     let x = event.clientX - centerX;
     x = x.toFixed(0);
-
-
     if (x > 0) {
-        event.target.style.cssText = `transform:rotateY(25deg)`
+        event.target.style.transform = `rotateY(25deg)`
     }
     else if (x < 0) {
-        event.target.style.cssText = `transform:rotateY(-25deg)`
+        event.target.style.transform = `rotateY(-25deg)`
     }
     else {
-        event.target.style.cssText = `transform:rotateY(0deg)`
+        event.target.style.transform = `rotateY(0deg)`
     }
 }
 function reset(event) {
-    event.target.style.cssText = 'transform:rotateY(0deg)'
+    event.preventDefault();
+
+    event.target.style.transform = 'rotateY(0deg)'
 }
 details[1].card.addEventListener('mousemove', rotator)
 details[1].card.addEventListener('mouseout', reset)
+details[1].card.style.color="white"
+details[0].card.style.filter='brightness(0.57)'
+details[2].card.style.filter='brightness(0.57)'
+
+
 var i = 0;
 
-leftbutton.addEventListener('click', () => {
+leftbutton.addEventListener('click', (event) => {
+    event.preventDefault();
     i++;
     i %= 3;
     body.style.backgroundImage=`url(${details[i].bgurl})`
     for (let j = 0; j < 3; j++) {
-        details[j].cardcontr.style.cssText += "z-index:2"
-        details[j].cardcontr.style.cssText = `left:${details[j].pos[i]}vw;transform:scaleY(${details[j].scal[i]})`
-        details[j].card.style.cssText = `transform:rotateY(${details[j].angl[i]}deg)`
+        details[j].cardcontr.style.cssText = `z-index:2;left:${details[j].pos[i]}vw;transform:scaleY(${details[j].scal[i]})`
+        details[j].card.style.transform = `rotateY(${details[j].angl[i]}deg)`
         
         details[((j % 3))].card.removeEventListener('mousemove', rotator)
         details[(j % 3)].card.removeEventListener('mouseout', reset)
         details[j].card.style.filter='brightness(0.57)'
+        details[j].card.style.color="rgba(0,0,0,0)"
+
         
         // details[j].cardcontr.style.cssText="transform:scaleX(1.0)"
     }
@@ -85,27 +97,27 @@ leftbutton.addEventListener('click', () => {
         k = 2;
     }
     details[k].card.addEventListener('mousemove', rotator)
-    details[k].cardcontr.style.cssText += "z-index:3"
+    details[k].cardcontr.style.zIndex = "5"
     details[k].card.style.filter="brightness(1)"
+    details[k].card.style.color="white"
     details[k].card.addEventListener('mouseout', reset)
 })
 
-rightbutton.addEventListener('click', () => {
+rightbutton.addEventListener('click', (event) => {
+    event.preventDefault();
+
     i++;
     i = ((i + 1) % 3);
     body.style.backgroundImage=`url(${details[i].bgurl})`
     // console.log(sl)
     
     for (let j = 2; j >= 0; j--) {
-        details[j].cardcontr.style.cssText += "z-index:2"
-        details[j].cardcontr.style.cssText = `left:${details[j].pos[i]}vw;transform:scaleY(${details[j].scal[i]})`
-        details[j].card.style.cssText = `transform:rotateY(${details[j].angl[i]}deg)`
+        details[j].cardcontr.style.cssText = `z-index:2;left:${details[j].pos[i]}vw;transform:scaleY(${details[j].scal[i]})`
+        details[j].card.style.transform = `rotateY(${details[j].angl[i]}deg)`
         details[((j % 3))].card.removeEventListener('mousemove', rotator)
         details[(j % 3)].card.removeEventListener('mouseout', reset)
         details[j].card.style.filter='brightness(0.57)'
-        
-
-        // details[j].cardcontr.style.cssText="transform:scaleX(1.0)"
+        details[j].card.style.color="rgba(0,0,0,0)"
 
     }
     let k = ((1 - i) % 3);
@@ -113,7 +125,8 @@ rightbutton.addEventListener('click', () => {
         k = 2;
     }
     details[k].card.addEventListener('mousemove', rotator)
-    details[k].cardcontr.style.cssText += "z-index:3"
+    details[k].cardcontr.style.zIndex = "5"
     details[k].card.style.filter="brightness(1)"
+    details[k].card.style.color="white" 
     details[k].card.addEventListener('mouseout', reset)
 })
