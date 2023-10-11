@@ -1,0 +1,12 @@
+.input-container {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  padding: 5px;
+  transition: all 0.3s;
+}
+
+.input-container.expanded {
+  width: 300px; /* Adjust the width to your preference */
+}
