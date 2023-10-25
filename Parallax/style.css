@@ -1,0 +1,68 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:@wght@400;500&display=swap");
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Raleway", sans-serif;
+  font-size: 4rem;
+  color: white;
+  background-color: black;
+
+  .parallax_wrapper {
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    perspective: 300px;
+
+    .intro_screen {
+      height: 100vh;
+      background-image: url("./assets/parallax2.jpg");
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .outro_screen {
+      height: 100vh;
+      background-color: rgb(0, 0, 0);
+      color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    .parallax_group {
+      position: relative;
+      height: 100vh;
+      transform-style: preserve-3d; /* makes sure about the depth */
+
+      .parallax_layer {
+        position: absolute;
+        inset: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .base_layer {
+        /* scale calculation: 1+((Ztransform value * -1)/perspective) */
+        transform: translateZ(-300px) scale(2);
+      }
+      .mid_layer {
+        transform: translateZ(0);
+      }
+      .top_layer {
+        transform: translateZ(210px) scale(0.3);
+      }
+    }
+    #intro {
+      z-index: 0;
+    }
+    #group-1 {
+      z-index: -1;
+    }
+    #group-1 > .base_layer {
+      background-color: rgb(0, 0, 0);
+    }
+  }
+}
